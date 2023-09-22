@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+	<h1>マイページ</h1>
+	<p>[[${sessionForm.userName}]]さん,Cinemasにようこそ。</p>
+	<p>ログイン中</p>
+	<!-- postingメソッドに処理を飛ばす -->
+	<a th:href="@{/posting}">タイトル、感想を投稿する</a><br/>
+	
+	<!-- mainメソッドに処理を飛ばす -->
+	<a th:href="@{/main}">メインページへ</a><br/>
+	
+	<!-- logoutメソッドに処理を飛ばす -->
+	<a th:href="@{/logout}">ログアウト</a><br/>
+	
+	<!-- 自分自身の投稿したものだけの一覧 -->
+	<dev th:each="cinemasPostList : ${cinemasPostList}">
+		<p>[[${sessionForm.userName}]] : [[${cinemasPost.title}]] </p>
+	</dev>
+</body>
+
+</html>

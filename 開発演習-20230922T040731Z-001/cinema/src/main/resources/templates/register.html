@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+	<h1>[[#{app.title}]]新規ユーザー登録画面</h1>
+		<p th:if="${registerResult} == '入力したユーザー情報は既に登録済みです。'"
+	      th:text="${registerResult}">登録済みだったら表示</p>
+
+	<form th:action="@{/registerCheck}" method="post" th:object="${accountForm}">
+		<!-- 	入力値をaccountForm格納、controllerの/registerCheckに飛ぶ処理 -->
+		<p>※ 全項目の入力は必須です ※</p>
+		<table>
+			<tr>
+				<td>ユーザーID : </td>
+				<td><input type="text" th:field="*{userId}" required></td>
+			</tr>
+			<tr>
+				<td>ユーザー名 : </td>
+				<td><input type="text" th:field="*{userName}" required></td>
+			</tr>
+			<tr>
+				<td>パスワード : </td>
+				<td><input type="password" th:field="*{password}" required></td>
+			</tr>
+			<tr>
+				<td> 名前: </td>
+				<td><input type="text" th:field="*{name}" required></td>
+			</tr>
+			<tr>
+				<td>メール : </td>
+				<td><input type="text" th:field="*{mail}" required></td>
+		</table>
+		
+		<input type="submit" value="登録"><br/>
+		<a th:href="@{/top}">トップへ</a><br/>
+		
+		<!-- #でBindingResultオブジェクトを指定している -->
+		<!-- hasErrors('フィールド名')で、フィールドごとのエラーを抽出できる -->
+		<p th:if="${#fields.hasErrors('userId')}" th:text="${#fields.errors('userId')}"></p>
+		<p th:if="${#fields.hasErrors('userName')}" th:text="${#fields.errors('userName')}"></p>
+		<p th:if="${#fields.hasErrors('password')}" th:text="${#fields.errors('password')}"></p>
+		<p th:if="${#fields.hasErrors('name')}" th:text="${#fields.errors('name')}"></p>
+		<p th:if="${#fields.hasErrors('mail')}" th:text="${#fields.errors('mail')}"></p>
+	</form>
+</body>
+
+</html>

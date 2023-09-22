@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+	<h1>メインページ</h1>
+	<a th:href="@{/myPage}">マイページへ</a><br>
+	<!-- cinemaPostFormに値を格納して/cinemaPostsメソッドに飛ばす -->
+	<form th:action="@{/cinemaPosts}" method="post" th:objeect="${cinemaPostForm}">
+
+		<!-- 絞り込み検索コード -->
+		<inpiut type="text" th:field="*{impressions}">
+			<input type="submit" value="検索"><br />
+	</form>
+
+	<!-- 全ユーザーの投稿を取得 -->
+	<dev th:each="cinemasPostList: ${cinemasPostList}">
+		<p>[[${sessionForm.userName}]] : [[${cinemasPost.title}]]</p>
+	</dev>
+	<a th:href="@{/logout}">ログアウト</a><br>
+</body>
+
+</html>

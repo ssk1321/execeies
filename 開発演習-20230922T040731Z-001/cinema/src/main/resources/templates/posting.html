@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+	<h3 th:text="${sessionForm.userName + 'さんの投稿ページ'}"></h3>
+	<form th:action="@{/cinemaPosts}" method="post" th:object="${cinemasPost}">
+
+		<label for="title">タイトル : </label><br />
+		<input type="text" th:field="*{title}"><!-- requiredは必須 -->
+		</label><br />
+
+		<label for="impressions">感想 : </label><br />
+		<textarea th:field="*{impressions}"></textarea>
+
+		<label for="rating">評価 : </label><br />
+		<input type="number" name="rating" th:field="*{rating}" min="1" max="5">
+
+		<input type="submit" value="投稿">
+	</form>
+
+	<!--	<h2>投稿した内容</h2>-->
+	<!--    <ul>-->
+	<!--        <li th:each="review : ${reviews}">-->
+	<!--			<span th:text="${review.postId}">投稿ID</span> <br/>-->
+	<!--            <span th:text="${review.title}">タイトル</span> <br/>-->
+	<!--            <span th:text="${review.impressions}">感想</span> <br/>-->
+	<!--            Rating: <span th:text="${review.rating}">評価</span> <br/>-->
+	<!--        </li>-->
+	<!--    </ul>-->
+
+	<a th:href="@{/myPage}">マイページへ</a>
+	<a th:href="@{/main}">メインページへ</a>
+</body>
+
+</html>
