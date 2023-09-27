@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+	<h1>[[#{app.title}]]ログイン画面</h1>
+	
+	<p>ユーザーIDとパスワードを入力してください。</p>
+	<form th:action="@{/loginPass}" method="post" th:object="${sessionForm}">
+		<!-- controllerのpost、/cinemaMutterにobjectに格納した値を飛ばす処理 -->
+		<!-- input内容をuser_id,passに格納 照合してログインする -->
+		<table>
+			<!--*{フィールド名}に入力された値 をsessionFormのフィールドに値を格納-->
+			<tr>
+				<td>ユーザーID : </td>
+				<td><input type="text" th:field="*{user_id}"></td>
+			</tr>
+			<tr>
+				<td>パスワード : </td>
+				<td><input type="text" th:field="*{password}"></td>
+			</tr>
+		</table>
+		<!-- 入力され格納された値をloginPassメソッドに処理を飛ばすボタン -->
+		<input type="submit" value="ログイン">
+	</form>
+	<!-- registerメソッドに処理を飛ばす -->
+	<a th:href="@{/register}">新規ユーザー登録はこちら</a>
+</body>
+
+</html>

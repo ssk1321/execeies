@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.title</title>
+</head>
+
+<body>
+	<h1>[[#{app.title}]] Top</h1>
+	<p>映画のタイトルや感想を投稿・閲覧するサイトです。</p><br>
+	<a th:href="@{/login}">ログインする</a><br>
+	<!-- login.htmlに遷移する。 -->
+	</form>
+	<a th:href="@{/register}">新規登録する</a>
+	<!-- register.htmlに遷移する。 -->
+	
+</body>
+
+</html>
