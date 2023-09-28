@@ -40,8 +40,8 @@ values ('ssk', 'ssk1', '12345', '佐々木', 'sukkiriShop@gmail.jp');
 values ('mnt', 'minato', '1234', '湊 雄輔', 'sukkiriShop@gmail.jp');
 
 
-insert into cinemas_post(postId, userId, title, impressions)
-values (1, 'ssk1234', '羊たちの沈黙', 'レクター博士役の人がとてもよかった。');
+insert into cinemas_post(post_id, user_id, title, impressions)
+values (34, 'ssk', '羊たちの沈黙', 'レクター博士役の人がとてもよかった。');
 
 インナージョイン
 SELECT c.USER_ID, a.USER_NAME,  FROM ACCOUNT as a INNER JOIN CINEMAS_POST as c ON c.USER_ID = 'ssk';
@@ -52,3 +52,6 @@ SELECT c.USER_ID, a.USER_NAME, c.POST_ID, c.TITLE, c.IMPRESSIONS
 
 SELECT c.USER_ID, a.USER_NAME, c.POST_ID, c.TITLE, c.IMPRESSIONS
 				FROM ACCOUNT as a INNER JOIN CINEMAS_POST as c ON a.USER_ID = c.USER_ID
+
+List<CinemasPost> mySelfPostList =  cinemasPostService.findMyPost();
+model.addAttribute("mySelfPostList", mySelfPostList);
