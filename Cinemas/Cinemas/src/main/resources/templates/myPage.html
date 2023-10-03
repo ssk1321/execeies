@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+	<style>
+		.container {
+			display: grid;
+			place-items: center;
+			height: 15%;
+			/* 画面の高さいっぱいに設定 */
+		}
+		        table {
+            border-collapse: collapse; /* セル間の境界線を非表示にする */
+            width: 800px; /* テーブルを親要素の幅に合わせる */
+        }
+
+        th, td {
+            padding: 10px; /* セルの内側に10pxの隙間を追加 */
+            border: 1px solid #ccc; /* セルの境界線を表示する */
+        }
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>マイページ</h1>
+		<p>[[${sessionForm.user_name}]]さん,Cinemasにようこそ。</p>
+		<p>ログイン中</p>
+	</div>
+
+	<div style="text-align:center">
+		<!-- postingメソッドに処理を飛ばす -->
+		<a th:href="@{/posting}" class="button">投稿する</a>
+
+		<!-- mainメソッドに処理を飛ばす -->
+		<a th:href="@{/main}" class="button">メインページへ</a>
+
+		<!-- logoutメソッドに処理を飛ばす -->
+		<a th:href="@{/logout}">ログアウト</a><br />
+
+		<p>投稿一覧</p>
+		<div class="container">
+			<table>
+			<!-- 投稿削除機能 -->
+			<form th:action="@{/deletePost}" method="post">
+				<table>
+					<!-- 	ユーザー自身の投稿したものだけの一覧 -->
+					<tr th:each="retentionUser : ${mySelfPostList}">
+						<td><input type="checkbox" name="selectedPosts" th:value="${retentionUser.post_id}" /></td>
+						<td th:name="PostList">[[${retentionUser.title}]] : ★[[${retentionUser.rating}]]</td>
+					</tr>
+				</table>
+				<button type="submit">選択した投稿を削除</button>
+			</form>
+			</table>
+			<div th:if="${successMessage}">
+				<p th:text="${successMessage}" style="color: green;"></p>
+			</div>
+			<div th:if="${errorMessage}">
+				<p th:text="${errorMessage}" style="color: red;"></p>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

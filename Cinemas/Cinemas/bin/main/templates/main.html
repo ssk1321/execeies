@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+	    <style>
+        .container {
+            display: grid;
+            place-items: center;
+            height: 30px; /* 画面の高さいっぱいに設定 */
+        }
+        table {
+            border-collapse: collapse; /* セル間の境界線を非表示にする */
+            width: 950px; /* テーブルを親要素の幅に合わせる */
+        }
+
+        th, td {
+            padding: 10px; /* セルの内側に10pxの隙間を追加 */
+            border: 1px solid #ccc; /* セルの境界線を表示する */
+        }
+    </style>
+</head>
+
+<body>
+	<div class="container">
+	<h1>メインページ</h1>
+	<a th:href="@{/myPage}">マイページへ</a><br>
+		<a th:href="@{/logout}" class="button">ログアウト</a><br>
+	<h3>みんなが見た映画</h3>
+
+	<!-- 検索フォーム-->
+	<form th:action="@{/search}" method="post" th:object="${retentionUser}">
+		<div>
+			<input type="text" id="title" name="title" th:field="*{title}" placeholder="タイトル検索">
+			<input type="submit" value="検索">
+		</div>
+	</form>
+
+	</form>
+	<a th:href="@{/main}">更新</a>
+	<!-- 全ユーザーの投稿を取得 -->
+	<table>
+	  <tr>
+    <th>ユーザー名</th>
+    <th>タイトル</th>
+    <th>評価</th>
+    <th>感想</th>
+  </tr>
+	<div th:each="retentionUser : ${allUserPostList}">
+<!--		<p>-->
+<!--			<label for="user_name">ユーザー : </label> [[${retentionUser.user_name}]] <br />-->
+<!--			<label for="title" ,"rating">title , 評価 : </label>[[${retentionUser.title}]] ,★[[${retentionUser.rating}]]<br />-->
+<!--			<label for="impressions">感想 : </label>-->
+<!--			[[${retentionUser.impressions}]]-->
+<!--		</p>-->
+
+  <tr>
+    <td >[[${retentionUser.user_name}]] </td>
+    <td>[[${retentionUser.title}]]</td>
+    <td>★[[${retentionUser.rating}]]</td>
+    <td>[[${retentionUser.impressions}]]</td>
+  </tr>
+
+</table>
+	</div>
+</body>
+
+</html>

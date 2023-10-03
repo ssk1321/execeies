@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	layout:decorate="~{templates/layout/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+	<link th:href="@{/css/cinemas.css}" rel="stylesheet">
+</head>
+
+<body>
+	<div style="text-align:center" layout:fragment="content">
+		<h1>CinemaS</h1>
+		<p>映画のタイトルや感想を投稿・閲覧するサイトです。</p><br>
+		<!-- login.htmlに遷移する。 -->
+		<a th:href="@{/login}" class="button">ログイン</a>
+		<!-- register.htmlに遷移する。 -->
+		<a th:href="@{/register}" class="button">新規登録する</a>
+		<!-- CSSのurlに設定している画像がdivの中に入る -->
+		<div class="img-box">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+</body>
+
+</html>

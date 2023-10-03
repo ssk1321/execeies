@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+	<h1>メインページ</h1>
+	<a th:href="@{/myPage}">マイページへ</a><br>
+	<h3>みんなが見た映画</h3>
+
+	<!-- 検索フォーム -->
+	<form th:action="@{/search}" method="get">
+		<div>
+			<label for="title">タイトル:</label>
+			<input type="text" id="title" name="title" th:field="*{title}" placeholder="タイトル検索">
+			<input type="submit" value="検索">
+		</div>
+	</form>
+
+	<!-- 検索結果 -->
+	<h3>検索結果</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>タイトル</th>
+				<th>評価</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="searchResults : ${searchResults}">
+				<td th:text="${searchResultsUser.title}"></td>
+				<td th:text="${searchResults.rating}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a th:href="@{/logout}" class="button">ログアウト</a><br>
+</body>
+
+</html>

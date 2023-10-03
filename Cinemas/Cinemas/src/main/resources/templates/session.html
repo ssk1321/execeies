@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+		<div style="text-align:center" layout:fragment="content">
+		<!-- sessionが切れたときに表示するメッセージ -->
+	<h2>[[${msg}]]</h2>
+	<a th:href="@{/index}">ログインページへ</a><br>
+	</div>
+</body>
+</html>
