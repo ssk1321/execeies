@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+           xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+           layout:decorate="~{common/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+	<link th:href="@{/css/cinemas.css}" rel="stylesheet">
+</head>
+
+<body>
+	<div th:replace="common/header::header" style="text-align:center" >
+		<h3>[[${sessionForm.user_name}]]さんの投稿ページ</h3>
+
+		<a th:href="@{/myPage}">マイページへ</a>
+		<a th:href="@{/main}">メインページへ</a>
+
+		<div th:if="${msg} != null">
+			<p th:text="${msg}">セッションが切れたときの表示</p>
+		</div>
+
+		<div>
+			<form th:action="@{/cinemaPosts}" method="post" th:object="${retentionUser}">
+				<div>
+						<label>タイトル</label><br />
+						<input type="text"  th:field="*{title}" placeholder="タイトル"
+							required /><br />
+							<!-- requiredで必須項目になる -->
+				</div>
+
+				<div>
+						<label>感想</label><br />
+						<textarea th:field="*{impressions}" placeholder="感想" cols="30" rows="5"></textarea><br />
+				</div>
+
+				<div>
+					<label for="rating">評価</label>
+					<div id="rating" class="rating-container">
+						<span class="rating-star" data-rating="1">★</span>
+						<span class="rating-star" data-rating="2">★</span>
+						<span class="rating-star" data-rating="3">★</span>
+						<span class="rating-star" data-rating="4">★</span>
+						<span class="rating-star" data-rating="5">★</span>
+					</div>
+					<input type="hidden" name="rating" th:field="*{rating}" id="selectedRatingField" required />
+				</div>
+
+				<input type="submit" value="投稿">
+
+				<!-- 入力がされなかった時エラーメッセージを出す -->
+				<div th:if="${#fields.hasErrors('*')}">
+					<p th:each="err:${#fields.errors('*')}" th:text="${err}"></p>
+				</div>
+
+				<!-- 投稿できたときの表示 -->
+				<div th:if="${message} == '投稿しました。' ">
+					<p th:text="${message}" style="color: green;"></p>
+				</div>
+				<!-- 投稿に失敗した場合のエラー表示 -->
+				<div th:if="${msg} != null">
+					<p th:text="${msg}"><p>
+				</div>
+			</form>
+		</div>
+
+		<script>
+			// 評価がクリックされたときの処理
+			const ratingStars = document.querySelectorAll('.rating-star');
+			let selectedRating = 0;
+
+			ratingStars.forEach(star => {
+				star.addEventListener('click', () => {
+					const rating = parseInt(star.getAttribute('data-rating'));
+					selectedRating = rating;
+
+					// 全ての評価から'selected'クラスを削除
+					ratingStars.forEach(s => {
+						s.classList.remove('selected');
+						// スタイルをリセット
+						s.style.color = '';
+					});
+
+					// 選択された評価に'selected'クラスを追加
+					star.classList.add('selected');
+
+					// 選択された評価をhiddenフィールドに設定
+					document.getElementById('selectedRatingField').value = selectedRating;
+
+					// スタイルを設定
+					ratingStars.forEach((s, index) => {
+						if (index < rating) {
+							s.style.color = 'red';  // 選択された星までを赤に変更
+						}
+					});
+				});
+			});
+
+			// マウスが星の上にあるときにカーソルを変更
+			ratingStars.forEach(star => {
+				star.addEventListener('mouseover', () => {
+					star.style.cursor = 'pointer';
+				});
+			});
+
+		</script>
+
+</body>
+
+</html>

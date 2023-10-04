@@ -1,0 +1,148 @@
+/* ブラウザ背景の色指定 */
+    body {
+      background: #516373;
+    }
+    
+/* リンク押下後の色指定 */
+a:visited {
+ color: #BDF2F2;
+}
+/* リンク押下中の色指定 */
+a:active { 
+    color: #4995A6;
+ }
+ 
+ /*user */
+ .user {
+	 right:20px ;
+	 color:#C1CED9 ;
+ }
+ 
+ 星の通常のサイズ 
+.rating-star {
+	font-size: 24px;
+}
+
+/* 選択された星のサイズ */
+.rating-star.selected {
+	font-size: 30px;
+	/* 選択された星のサイズを大きくする例 */
+}
+
+/* CSSでアニメーション */
+.img-box {
+	width: 100%;
+	height: 46vw;
+	overflow: hidden;
+	position: relative;
+}
+
+.img-box>div {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	height: 36vw;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	z-index: 10;
+	opacity: 0;
+	animation-name: fade;
+	animation-duration: 12s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+
+	20% {
+		opacity: 7;
+	}
+
+	80% {
+		opacity: 0;
+		transform: scale(1.2);
+	}
+
+	100% {
+		z-index: 0;
+		opacity: 0;
+	}
+}
+
+/* 1枚目のスライド */
+.img-box>div:first-of-type {
+	background-image: url(../image/image1.jpeg);
+}
+
+/* 2枚目のスライド */
+.img-box>div:nth-of-type(2) {
+	background-image: url(../image/image2.png);
+	animation-delay: 4s;
+}
+
+/* 3枚目のスライド */
+.img-box>div:last-of-type {
+	background-image: url(../image/image3.jpg);
+	animation-delay: 8s;
+}
+
+table {
+	border-collapse: collapse;
+	/* セル間の境界線を非表示にする */
+	width: 100%;
+	/* テーブルを親要素の幅に合わせる */
+}
+
+th,
+td {
+	padding: 10px;
+	/* セルの内側に10pxの隙間を追加 */
+	border: 1px solid #ccc;
+	/* セルの境界線を表示する */
+}
+
+::placeholder {
+	text-align: center;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	line-height: 60px;
+	background: #2C3540;
+	display: inline-block;
+	vertical-align: baseline;
+}
+/* ロゴ */
+header .logo {
+	padding: 0 20px;
+	font-size: 18px;
+	color: #C1CED9;
+	letter-spacing: .2em;
+}
+/* メニュー */
+header ul {
+	padding: 0 30px;
+}
+header li {
+	display: inline-block;
+	padding: 0 6px;
+	font-size: 14px;
+	letter-spacing: .1em;
+}
+header li a {
+	color: #fff;
+}
+/* メニューのリンクホバーで線 */
+header li a:hover {
+	text-decoration: underline;
+}
+header img {
+	background-image: url(../image/header.png);
+}

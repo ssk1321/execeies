@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+           xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+           layout:decorate="~{common/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+			<!-- 登録に成功したら「登録完了！」、失敗したら「登録失敗！」と出力する -->
+	<!-- controllerでmodelに格納されたregisterResultが入る -->
+	<h2>[[${registerResult}]]</h2>
+	<a th:href="@{/login}" style="text-decoration:none;">ログインする</a>
+	<a th:href="@{/top}" style="text-decoration:none;">トップへ</a>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorate="~{common/header}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<!-- 共通ヘッダー -->
+	<header th:fragment="header">
+		<p class="logo"><a th:href="@{/top}" style="text-decoration:none;">CinemaS</a></p>
+		<ul>
+			<li><a th:href="@{/posting}" class="button" style="text-decoration:none;">投稿ページ</a></li>
+			<li><a th:href="@{/myPage}" class="button" style="text-decoration:none;">マイページ</a></li>
+			<li><a th:href="@{/main}" class="button" style="text-decoration:none;">メインページ</a></li>
+		</ul>
+		<span class="user">ログイン中</span>
+	</header>
+</body>
+
+</html>

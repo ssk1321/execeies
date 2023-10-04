@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+	<div style="text-align:center">
+
+		<h1>[[#{app.title}]]</h1>
+		<P>ログアウトしました。</P>
+		<p>再び投稿や閲覧する際は、ログインしてください。</p>
+
+		<!-- top.htmlに遷移 -->
+		<a th:href="@{/top}" style="text-decoration:none;">トップへ</a>
+	</div>
+</body>
+
+</html>

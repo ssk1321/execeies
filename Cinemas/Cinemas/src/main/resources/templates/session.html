@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+           xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+           layout:decorate="~{common/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+		<div style="text-align:center">
+		<!-- sessionが切れたときに表示するメッセージ -->
+	<h2>[[${msg}]]</h2>
+	<a th:href="@{/index}" style="text-decoration:none;">ログインページへ</a><br>
+	</div>
+</body>
+</html>
