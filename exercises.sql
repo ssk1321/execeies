@@ -29,6 +29,7 @@ create table cinemas_post (
 	user_id character varying(20) not null,
 	title character varying(100) not null,
 	impressions text not null,
+	rating integer(5) not null,
 	foreign key(user_id) references account(user_id)
 	);
 

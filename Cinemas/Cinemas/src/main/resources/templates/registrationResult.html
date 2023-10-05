@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorate="~{common/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+	<link th:href="@{/css/cinemas.css}" rel="stylesheet">
+</head>
+
+<body>
+	<div th:replace="common/layout::header1"></div>
+<!--	controllerでmodelに格納されたregisterResultが入る -->
+		<h2>[[${registerResult}]]</h2>
+		<a th:href="@{/login}">ログインする</a>
+		<a th:href="@{/top}">トップへ</a>
+	</div>
+</body>
+
+</html>

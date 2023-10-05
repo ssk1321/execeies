@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+	<link th:href="@{/css/cinemas.css}" rel="stylesheet">
+	<style>
+		.example4 {
+			text-align: center;
+		}
+	</style>
+ </head>
+
+<body>
+	<div style="text-align:center">
+		<h1>検索結果</h1>
+		<a th:href="@{/myPage}" class="btn-cross">マイページへ</a>
+		<a th:href="@{/main}" class="btn-cross">メインページへ</a><br>
+		<p>[[${sessionForm.user_name}]]さん、ログイン中</p>
+		<h3>みんなが見た映画</h3>
+
+		<!-- 検索フォーム -->
+		<form th:action="@{/search}" method="post" th:object="${retentionUser}">
+			<div>
+				<input type="text" id="title" name="title" th:field="*{title}" placeholder="タイトル検索">
+				<input type="submit" value="検索">
+			</div>
+		</form>
+
+		<!-- 検索結果 -->
+		<h3>検索結果 : [[${retentionUser.title}]]</h3>
+		<!-- 拡張for文で受け取り側とListを同じ名前にしない -->
+
+		<table class="design04">
+			<tr>
+				<th>ユーザ名</th>
+				<th>評価</th>
+				<th>感想</th>
+			</tr>
+			<div th:each="searchResult : ${searchResults}">
+				<tr>
+					<td>[[${searchResult.user_name}]]</td>
+					<td>★[[${searchResult.rating}]]</td>
+					<td>[[${searchResult.impressions}]]</td>
+				</tr>
+				</tbody>
+		</table>
+	</div>
+
+	<a th:href="@{/logout}" class="button">ログアウト</a><br>
+</body>
+
+</html>

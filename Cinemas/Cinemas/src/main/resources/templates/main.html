@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+	layout:decorate="~{common/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+	<link th:href="@{/css/cinemas.css}" rel="stylesheet">
+	<style>
+		.example4 {
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div th:replace="common/header::header" class="container"></div>
+	<div style="text-align:center">
+		<h1>メインページ</h1>
+		<h3>みんなが見た映画</h3>
+
+		<!-- 検索フォーム-->
+		<form th:action="@{/search}" method="post" th:object="${retentionUser}">
+			<div>
+				<input type="text" id="title" name="title" th:field="*{title}" placeholder="タイトル検索">
+				<input type="submit" value="検索">
+			</div>
+		</form>
+
+		</form>
+		<a th:href="@{/main}">更新</a>
+		<!-- 全ユーザーの投稿を取得 -->
+		<table class="design04">
+			<tr>
+				<th>ユーザー名</th>
+				<th>タイトル</th>
+				<th>評価</th>
+				<th>感想</th>
+			</tr>
+			<div th:each="retentionUser : ${allUserPostList}">
+				<tr>
+					<td>[[${retentionUser.user_name}]] </td>
+					<td>[[${retentionUser.title}]]</td>
+					<td>★[[${retentionUser.rating}]]</td>
+					<td>[[${retentionUser.impressions}]]</td>
+				</tr>
+		</table>
+	</div>
+</body>
+
+</html>

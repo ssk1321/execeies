@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+           xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+           layout:decorate="~{common/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+	<link th:href="@{/css/cinemas.css}" rel="stylesheet">
+	<style>
+		.example4 {
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div th:replace="common/header::header" class="container"></div>
+	<div style="text-align:center">
+		<h1>マイページ</h1>
+		<p>[[${sessionForm.user_name}]]さん、Cinemasにようこそ。</p>
+
+<!--		 postingメソッドに処理を飛ばす -->
+<!--		<a th:href="@{/posting}" class="btn-cross">投稿する</a>-->
+<!--		 mainメソッドに処理を飛ばす -->
+<!--		<a th:href="@{/main}" class="btn-cross">メインページへ</a>-->
+<!--		 logoutメソッドに処理を飛ばす -->
+<!--		<a th:href="@{/logout}" class="btn-cross">ログアウト</a><br />-->
+
+		<h4>投稿一覧</h4>
+		<table class="design04">
+			<!-- 投稿削除機能 -->
+			<form th:action="@{/deletePost}" method="post">
+				<!-- 	ユーザー自身の投稿したものだけの一覧 -->
+				<tr th:each="retentionUser : ${mySelfPostList}">
+					<td><input type="checkbox" name="selectedPosts" th:value="${retentionUser.post_id}" /></td>
+					<td th:name="PostList">[[${retentionUser.title}]] : ★[[${retentionUser.rating}]]</td>
+				</tr>
+		</table>
+		<button type="submit">選択した投稿を削除</button>
+
+		<div th:if="${successMessage}">
+			<p th:text="${successMessage}" style="color: green;"></p>
+		</div>
+		<div th:if="${errorMessage}">
+			<p th:text="${errorMessage}" style="color: red;"></p>
+		</div>
+		</form>
+	</div>
+</body>
+
+</html>

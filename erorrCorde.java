@@ -1,7 +1,7 @@
 
 // エラーした際のコンソール確認用
 // serviceImpl
-System.out.println("serviceImpl 49line"  + resultUserList.get(1));
+System.out.println("serviceImpl 49line"  + resultUserList.get(0));
 
 // AccountRepositoryの71~75行目までの出力確認
 System.out.println((String) result.get("user_id"));
@@ -22,6 +22,9 @@ System.out.println(cinemasPostsList.get(0).getUser_id());
 System.out.println(cinemasPostsList.get(0).getTitle());
 		//		<p>[[${cinemasPost.user_name}]] : [[${cinemasPost.title}]]</p>
 
-	<div th:each="retentionUser : ${resultUserList}">
-	<p>[[${retentionUser.user_name}]]さん,Cinemasにようこそ。</p>
-	</div>
+// contorollerで受け取っているかの確認
+System.out.println(mySelfPostList);
+System.out.println(retentionUser);
+
+// listの要素番号と度の値を受け取るか指定
+System.out.println(searchResults(0).getTitle);
