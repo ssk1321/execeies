@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{app.title}">app.titleが表示される</title>
+</head>
+
+<body>
+	<h3>[[${sessionForm.user_name}]]さんの投稿ページ</h3>
+	<form th:action="@{/cinemaPosts}" method="post" th:object="${cinemasPostForm}">
+
+		<label for="title">タイトル : </label><br />
+		<input type="text" th:field="*{title}" required><!-- requiredで必須項目になる -->
+		</label><br />
+
+		<label for="impressions">感想 : </label><br />
+		<textarea th:field="*{impressions}"></textarea><br/>
+
+<!--		<label for="rating">評価 : </label><br />-->
+<!--		<input type="number" name="rating" th:field="*{rating}" min="1" max="5">-->
+
+		<input type="submit" value="投稿">
+		
+		<!-- 入力がされなかった時エラーメッセージを出す -->
+		<div th:if="${#fields.hasErrors('*')}">
+			<p th:each="err:${#fields.errors('*')}" th:text="${err}"></p>
+		</div>
+		
+		<!-- 投稿できたときの表示 -->
+		<div th:if="${message} == '投稿しました。'">
+			<p th:text="${message}"></p>
+		</div>
+		<!-- 投稿に失敗した場合のエラー表示 -->
+		<div th:if="${msg} != null">
+			<p th:text="${msg}">投稿ができなかった時の表示</p>
+		</div>
+	</form>
+
+	<a th:href="@{/myPage}">マイページへ</a>
+	<a th:href="@{/main}">メインページへ</a>
+</body>
+
+</html>
